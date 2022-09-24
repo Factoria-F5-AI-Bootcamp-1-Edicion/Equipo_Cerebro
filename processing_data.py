@@ -21,9 +21,9 @@ def procesing_dict(dictionary):
     union=integer_columns
     union.extend(float_columns)
     for i in union:
-        if  dictionary[i] == "yes":
+        if  dictionary[i] == "Yes":
             dictionary[i] = "1"
-        elif dictionary[i] == "no":
+        elif dictionary[i] == "No":
             dictionary[i] = "0"
         if  i in integer_columns:
             dictionary[i] = int(dictionary[i])
