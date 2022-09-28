@@ -1,6 +1,5 @@
-import click
 from colorama import init, Back, Fore
-
+import curses
 
 from processing_data import preprocessing_columns,procesing_dict,parse_object_dataframe, transformn_data
 from crudDataFrame import crudDataFrame
@@ -8,7 +7,6 @@ from data_input import Enter_data
 
 
 def main():
-
     menu = Enter_data()
     menu.show_title("Welcome to Stroke predictor CLI")
     dict_answer = menu.user_input()
