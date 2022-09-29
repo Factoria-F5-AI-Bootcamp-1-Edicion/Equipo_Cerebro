@@ -20,6 +20,8 @@ class Enter_data():
     GLUCOSE_LEVEL="Enter your glucose level ( number between 0 and 300): "
     BMI= "Enter your bmi ( number between 0 and 100): "
     SMOKER = "Enter your smoker status ( never / unknown / formerly / smokes): "
+    PESO =" Enter your weight(Kg)"
+    ALTURA ="Enter your weight(cm)"
 
     style = style_from_dict({
         Token.QuestionMark: '#E91E63 bold',
@@ -60,13 +62,19 @@ class Enter_data():
             'message':self.GLUCOSE_LEVEL,
             'validate': GlucoseValidation,
         },
+     {
+            'type': 'input',
+            'name': 'weight',
+            'message': self.PESO,
+            'validate': HeightValidation,
+        },
         {
             'type': 'input',
-            'name': 'bmi',
-            'message':self.BMI,
-            'validate': BmiValidation,
-        },
-
+            'name': 'height',
+            'message': self.ALTURA,
+            'validate': WeightValidation,
+        }
+        ,
         {
             'type': 'list',
             'name': 'hypertension',
@@ -89,19 +97,19 @@ class Enter_data():
             'type': 'list',
             'name': 'work_type',
             'message':self.WORK_TYPE,
-            'choices': ["government","self-employed","private","children"],
+            'choices': ["Government","Self-employed","Private","No Job"],
         },
         {
             'type': 'list',
             'name': 'Residence_type',
             'message':self.RESIDENCE_TYPE,
-            'choices': ["urban","rural"],
+            'choices': ["Urban","Rural"],
         },
         {
         'type': 'list',
         'name': 'smoking_status',
         'message':self.SMOKER,
-        'choices': ["never","unknown","formerly","smokes"],
+        'choices': ["Never","Formerly","Smokes"],
         }
         ]
         answers = prompt(questions, style=self.style)
