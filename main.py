@@ -1,33 +1,132 @@
-from colorama import init, Back, Fore
+import curses
+import time
+from curses import textpad
+import subprocess
+import sys
+
+
+## stdscr : objeto ventana
 import curses
 
-from processing_data import preprocessing_columns,procesing_dict,parse_object_dataframe, transformn_data
-from crudDataFrame import crudDataFrame
-from data_input import Enter_data
+PREDICTOR = 'Use predictor'
+STREAMLIT ='Go to Streamlit dashboard'
+DATA ='View data'
+EXIT='Exit'
 
+class MenuDisplay:
 
-def main():
-    menu = Enter_data()
-    menu.show_title("Welcome to Stroke predictor CLI")
-    dict_answer = menu.user_input()
-    dict_answer=procesing_dict(dict_answer)
-    df = parse_object_dataframe(dict_answer)
-
-    
-    ## TODO: preprocesado de datos resultante del eda
-
-    ## TODO : 2º preprocesado
-
-    ## TODO : Modelo predictor (REcibe dataframe y devuelve)
+    def __init__(self, menu):
+        # set menu parameter as class property
+        self.menu = menu
         
-        ## TODO: DataFrame --> modelo --> variable target (ictus : 0 | 1) --> Resultado convertirlo a string legible para usuario 
+        # run curses application
+        curses.wrapper(self.mainloop)
 
-    ## Guardado
-    crudDF=crudDataFrame()
-    crudDF.create(df)
-    ## person=createPerson(dictionary) --> Para Base de datos
+    def mainloop(self, stdscr):
+        # turn off cursor blinking
+        curses.curs_set(0)
+        # color scheme for selected row
+        curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
+        
+        # set screen object as class property
+        self.stdscr = stdscr
+
+        # get screen height and width
+        self.screen_height, self.screen_width = self.stdscr.getmaxyx()
+        box = [[3,3], [self.screen_height-3, self.screen_width-3]]
+        textpad.rectangle(stdscr, box[0][0], box[0][1], box[1][0], box[1][1])
+        # specify the current selected row
+        current_row = 0
+
+        # print the menu
+        self.print_menu(current_row)
+        stdscr.getch()
+        while 1:
+            key = self.stdscr.getch()
+
+            if key == curses.KEY_UP and current_row > 0:
+                current_row -= 1
+            elif key == curses.KEY_DOWN and current_row < len(self.menu) - 1:
+                current_row += 1
+            elif key == curses.KEY_ENTER or key in [10, 13]:
+                result = subprocess.run([sys.executable, "-c","from predictor import predictor; predictor()"],shell=True)
+                self.stdscr.getch()
+                # if user selected last row (Exit), confirm before exit the program
+                if current_row == len(self.menu) - 1:
+                    if self.confirm("Are you sure you want to exit?"):
+                        break
+
+            self.print_menu(current_row)
+
+    def print_menu(self, selected_row_idx):
+        self.stdscr.clear()
+        for idx, row in enumerate(self.menu):
+            x = self.screen_width // 2 - len(row) // 2
+            y = self.screen_height // 2 - len(menu) // 2 + idx
+            if idx == selected_row_idx:
+                self.color_print(y, x, row, 1)
+            else:
+                self.stdscr.addstr(y, x, row)
+        self.stdscr.refresh()
+
+    def color_print(self, y, x, text, pair_num):
+        self.stdscr.attron(curses.color_pair(pair_num))
+        self.stdscr.addstr(y, x, text)
+        self.stdscr.attroff(curses.color_pair(pair_num))
+
+    def print_confirm(self, selected="yes"):
+        # clear yes/no line
+        curses.setsyx(self.screen_height // 2 + 1, 0)
+        self.stdscr.clrtoeol()
+
+        y = self.screen_height // 2 + 1
+        options_width = 10
+
+        # print yes
+        option = "yes"
+        x = self.screen_width // 2 - options_width // 2 + len(option)
+        if selected == option:
+            self.color_print(y, x, option, 1)
+        else:
+            self.stdscr.addstr(y, x, option)
+
+        # print no
+        option = "no"
+        x = self.screen_width // 2 + options_width // 2 - len(option)
+        if selected == option:
+            self.color_print(y, x, option, 1)
+        else:
+            self.stdscr.addstr(y, x, option)
+
+        self.stdscr.refresh()
+
+    def confirm(self, confirmation_text):
+        self.print_center(confirmation_text)
+
+        current_option = "yes"
+        self.print_confirm(current_option)
+
+        while 1:
+            key = self.stdscr.getch()
+
+            if key == curses.KEY_RIGHT and current_option == "yes":
+                current_option = "no"
+            elif key == curses.KEY_LEFT and current_option == "no":
+                current_option = "yes"
+            elif key == curses.KEY_ENTER or key in [10, 13]:
+                return True if current_option == "yes" else False
+
+            self.print_confirm(current_option)
+
+    def print_center(self, text):
+        self.stdscr.clear()
+        x = self.screen_width // 2 - len(text) // 2
+        y = self.screen_height // 2
+        self.stdscr.addstr(y, x, text)
+        self.stdscr.refresh()
 
 
+if __name__ == "__main__":
 
-if __name__ == '__main__':
-    main()
+    menu = [PREDICTOR, STREAMLIT, DATA,EXIT]
+    MenuDisplay(menu)
