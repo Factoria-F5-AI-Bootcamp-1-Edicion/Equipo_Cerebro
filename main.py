@@ -7,14 +7,15 @@ from predictor import predictor
 import os
 from subprocess import call
 
-## stdscr : objeto ventana
+
 import curses
 
 PREDICTOR = 'Use predictor'
-STREAMLIT ='Go to Streamlit dashboard'
+STREAMLIT ='Go to Dashboard'
 DATA ='View data'
 EXIT='Exit'
 
+# TODO : HACER DESCRIPCION DE LA APP
 class MenuDisplay:
 
     def __init__(self, menu):
@@ -24,6 +25,7 @@ class MenuDisplay:
         # run curses application
         curses.wrapper(self.mainloop)
 
+    ## stdscr : objeto ventana
     def mainloop(self, stdscr):
         # turn off cursor blinking
         curses.curs_set(0)

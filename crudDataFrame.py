@@ -3,17 +3,23 @@ from data_model import Person
 import pandas as pd
 
 class crudDataFrame():
-    def create(self,df) -> str:
-        df.to_csv("db_person.csv")
+    def create(self,df,path) -> str:
+        df.to_csv(path)
 
-    def read(self,data) -> dict:
-        """Extract text from the currently loaded file."""
+    def read(self,path) -> dict:
         pass
     
-    def update(self):
-        pass
+    def update(self,df,path):
+        try:
+            data = pd.read_csv(path)
+            ## TODO: CONCATENAR DATAFRAME
+        except Exception:
+            self.create(df,path)
+
+
     def delete(self):
         pass
+    
     def createPerson(dictionary):
         person = Person()
         person.set_age(dictionary["age"])
