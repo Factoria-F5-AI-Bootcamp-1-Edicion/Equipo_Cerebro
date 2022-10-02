@@ -4,15 +4,15 @@ AGE_LIMIT =[0,99]
 GLUCOSE_LIMIT =[0,300]
 BMI_LIMIT =[0,100]
 BMI_LIMIT =[0,100]
-WEIGHT_LIMIT=[0.0,400]
-HEIGHT_LIMIT=[0.0,250]
+WEIGHT_LIMIT=[0.0,400.0]
+HEIGHT_LIMIT=[0.0,250.0]
 
 class HeightValidation(Validator):
     def validate(self, document):
         validator = invalid_inputs()
         try:
-            value = int(document.text)
-            if validator.is_numeric_invalid(value,AGE_LIMIT[0],AGE_LIMIT[1]) :
+            value = float(document.text)
+            if validator.is_numeric_invalid_float(value,HEIGHT_LIMIT[0],HEIGHT_LIMIT[1]) :
                 messager = validator.verify_message("height")
                 raise ValidationError(
                 message=messager,
@@ -26,8 +26,8 @@ class WeightValidation(Validator):
     def validate(self, document):
         validator = invalid_inputs()
         try:
-            value = int(document.text)
-            if validator.is_numeric_invalid(value,AGE_LIMIT[0],AGE_LIMIT[1]) :
+            value = float(document.text)
+            if validator.is_numeric_invalid_float(value,WEIGHT_LIMIT[0],WEIGHT_LIMIT[1]) :
                 messager = validator.verify_message("weight")
                 raise ValidationError(
                 message=messager,
@@ -68,25 +68,12 @@ class GlucoseValidation(Validator):
                 cursor_position=len(document.text))  # Move cursor to end
 
 
-    def validate(self, document):
-        validator = invalid_inputs()
-        try:
-            value = int(document.text)
-            if validator.is_numeric_invalid(value,BMI_LIMIT[0],BMI_LIMIT[1]) :
-                messager = validator.verify_message("bmi")
-                raise ValidationError(
-                message=messager,
-                cursor_position=len(document.text))  # Move cursor to end
-        except ValueError:
-            raise ValidationError(
-                message='Please enter a number',
-                cursor_position=len(document.text))  # Move cursor to end
-
 class invalid_inputs():
 
     def is_numeric_invalid(self,data,min,max):
         return (int(data) < min or int(data) > max)
-            
+    def is_numeric_invalid_float(self,data,min,max):
+        return (float(data) < float(min) or float(data) > float(max))     
     def verify_message(self,type):
         message = ""
         if str(type)== "age" :

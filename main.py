@@ -3,7 +3,9 @@ import time
 from curses import textpad
 import subprocess
 import sys
-
+from predictor import predictor
+import os
+from subprocess import call
 
 ## stdscr : objeto ventana
 import curses
@@ -49,7 +51,15 @@ class MenuDisplay:
             elif key == curses.KEY_DOWN and current_row < len(self.menu) - 1:
                 current_row += 1
             elif key == curses.KEY_ENTER or key in [10, 13]:
-                result = subprocess.run([sys.executable, "-c","from predictor import predictor; predictor()"],shell=True)
+                if menu[current_row] == PREDICTOR:      
+                    subprocess.run([sys.executable, "-c","from predictor import predictor;  predictor()"],shell=True)
+                elif menu[current_row] == STREAMLIT:
+                    os.system("start streamlit run ../DASHBOARD/brain.py")
+                    #subprocess.run(["bash", "streamlit run ../DASHBOARD/brain.py"],shell = True)
+                    #subprocess.run([sys.executable,'-c',"from dash_script import main;main()"],shell=True)
+                    #subprocess.Popen("streamlit run ../DASHBOARD/brain.py", shell=True, stdout=subprocess.PIPE).stdout.read()
+                   # subprocess.call("echo Hello World", shell=True)  
+
                 self.stdscr.getch()
                 # if user selected last row (Exit), confirm before exit the program
                 if current_row == len(self.menu) - 1:
