@@ -13,9 +13,11 @@ class crudDataFrame():
         try:
             data = pd.read_csv(path)
             ## TODO: CONCATENAR DATAFRAME
+            new_df =df.append(data)
+            new_df.to_csv(path)
         except Exception:
             self.create(df,path)
-
+       
 
     def delete(self):
         pass

@@ -1,3 +1,4 @@
+NOMBRE CLI: SP.22
 
 Let us introduce you our model SP.22, based on data analysis and research of stroke,
 which will allow us to anticipate its appearance, distinguish with certainty its causes, 
@@ -7,6 +8,8 @@ From this knowledge base, SP.22 will develop a set of decision support tools for
 to be used by healthcare professionals, and at the same time collects new data for future research.
 
 se me ocurrio ponerle nombre al modelo SP.22 (stroke prevention y el 22 por el año en que estamos)
+
+
 
 
 

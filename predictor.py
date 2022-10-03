@@ -36,7 +36,6 @@ def predictor():
     # Conversion de diccionario a dataframe
     df = parse_object_dataframe(dict_answer)
 
-    # TODO : VERIFICAR PREDICCIONES DEL MODELO (PRUEBAS RESULTAN EN 0, GENERALMENGE)
 
     # Aplicar transformador a columnas del dataframe y predecir variable target (Riesgo de ictus)
     y = predict_ictus(apply_transformer(df))
@@ -75,4 +74,5 @@ def predictor():
     
 if __name__ == '__main__':
     predictor()
+
 

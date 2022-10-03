@@ -57,7 +57,8 @@ class MenuDisplay:
             elif key == curses.KEY_DOWN and current_row < len(self.menu) - 1:
                 current_row += 1
             elif key == curses.KEY_ENTER or key in [10, 13]:
-                if menu[current_row] == PREDICTOR:      
+                if menu[current_row] == PREDICTOR:   
+                    os.system('cls')   
                     subprocess.run([sys.executable, "-c","from predictor import predictor;  predictor()"],shell=True)
                 elif menu[current_row] == STREAMLIT:
                     os.system("start streamlit run ../DASHBOARD/brain.py")
@@ -65,7 +66,10 @@ class MenuDisplay:
                     #subprocess.run([sys.executable,'-c',"from dash_script import main;main()"],shell=True)
                     #subprocess.Popen("streamlit run ../DASHBOARD/brain.py", shell=True, stdout=subprocess.PIPE).stdout.read()
                    # subprocess.call("echo Hello World", shell=True)  
-
+                elif menu[current_row] == DATA:
+                    os.system('cls')
+                    subprocess.run([sys.executable, "-c","from processing_data import show_table; show_table();"],shell=True)
+                    self.stdscr.getch()
                 self.stdscr.getch()
                 # if user selected last row (Exit), confirm before exit the program
                 if current_row == len(self.menu) - 1:
@@ -144,6 +148,5 @@ class MenuDisplay:
 
 
 if __name__ == "__main__":
-
     menu = [PREDICTOR, STREAMLIT, DATA,EXIT]
     MenuDisplay(menu)
