@@ -1,0 +1,95 @@
+.header-style{
+  background-color: white;
+}
+.center{
+  text-align: center;
+}
+.logo_title{
+  width: 300px;
+  height: 250px;
+}
+.wrap{
+  display: flex;
+  justify-content: space-between;
+}
+.wrap1{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+.logo{
+  width: 150px;
+  height: 150px;
+}
+.header-present{
+  font-size: 16px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.header-present1{
+  font-size: 16px;
+  text-align: left;
+  padding-bottom: 20px;
+  margin-top: 30px;
+}
+.header-emoji{
+  text-align: center;
+  padding-top: 20px;
+}
+.header-title {
+  padding-top: 100px;
+  text-align: center;
+  font-size: 48px;
+  font-style:initial;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 900;
+}
+.header-title2 {
+  text-align: center;
+  font-size: 28px;
+  padding-top: 30px;
+}
+.header-description {
+  color: black;
+  font-style:oblique;
+  margin: 14px auto;
+  text-align: center;
+  max-width: 884px;
+  font-size: 20px;
+  padding: 20px;
+}
+.header-description2 {
+  color: rgb(35, 3, 110);
+  font-weight: 600;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+}
+.content-title {
+  text-align: center;
+  font-style:initial;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 600;
+  background-color: beige;
+}
+.question{
+  font-size: 15px;
+  padding-top: 20px;
+}
+.question_title{
+  color: black;
+  font-size: 15px;
+  text-align: left;
+  padding-top: 25px;
+}
+.input_margin{
+  font-size: 15px;
+  margin-top: 20px;
+  margin-right: 15px;
+}
+.botton{
+  background-color: rgb(25, 158, 210);
+  color: white;
+  font-size: 15px;
+  margin-top: 15px;
+}
