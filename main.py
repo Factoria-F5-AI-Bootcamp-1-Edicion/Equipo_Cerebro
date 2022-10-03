@@ -11,14 +11,12 @@ from subprocess import call
 import curses
 
 PREDICTOR = 'Use predictor'
-STREAMLIT ='Go to Dashboard'
+STREAMLIT ='Go to Dashboard --> Performance report'
 DATA ='View data'
 EXIT='Exit'
 
-INTRODUCTION ="""Let us introduce you our model SP.22, based on data analysis and research of stroke,  which will allow us to anticipate
-                its appearance,distinguish with certainty its causes,establish an early diagnosis and improve the treatment of patients.
-                From this knowledge base, SP.22 will develop a set of decision support tools for clinical level, to be used by healthcare
-                professionals, and at the same time collects new data for future research."""
+INTRODUCTION ="SP.22"
+                
 # TODO : HACER DESCRIPCION DE LA APP
 class MenuDisplay:
 
@@ -80,7 +78,7 @@ class MenuDisplay:
 
     def print_menu(self, selected_row_idx):
         self.stdscr.clear()
-        self.stdscr.addstr(4,5,INTRODUCTION, curses.color_pair(1))
+        self.stdscr.addstr(8, 57,INTRODUCTION, curses.color_pair(1))
         for idx, row in enumerate(self.menu):
             x = self.screen_width // 2 - len(row) // 2
             y = self.screen_height // 2 - len(menu) // 2 + idx

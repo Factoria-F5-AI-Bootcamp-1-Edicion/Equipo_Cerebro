@@ -58,8 +58,6 @@ def procesing_dict(dictionary):
         dictionary["work_type"] ='Govt_job'
     if dictionary["work_type"] == 'No Job':
         dictionary["work_type"] ='children'
-
-    print(dictionary)
     return dictionary
 
 def parse_object_dataframe(object):

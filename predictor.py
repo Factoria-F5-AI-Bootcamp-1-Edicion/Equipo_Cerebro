@@ -1,15 +1,36 @@
 from colorama import init, Back, Fore
-import curses
 import sklearn
+import os
+import curses
 
 from processing_data import apply_transformer,procesing_dict,parse_object_dataframe, predict_ictus
 from crudDataFrame import crudDataFrame
 from data_input import Enter_data
+import time
 
 ## Rutas de Archivos de datasets
 PATH_MAIN ="db_predictions.csv"
 PATH_SECONDARY="db_additional.csv"
 
+## Metodo que muestra mensaje en box de una nueva ventana 
+def show_result(title,result,dictio):
+    time.sleep(5)
+    os.system('cls')   
+    print()
+    curses.initscr()
+    win = curses.newwin(5, 40, 10, 20)
+    win.box()
+    win.move(0, 3)
+    win.addstr(title)
+    win.move(1, 1)
+    print()
+    win.addstr(result)
+    win.addstr("\n")
+    win.addstr("\n")
+    win.addstr("Press any key to continue")
+    
+    win.getch()
+    curses.endwin()
 def predictor():
     print("\033[2J\033[1;1f") 
 
@@ -22,8 +43,6 @@ def predictor():
     menu = Enter_data()
     menu.show_title("Welcome to Stroke predictor CLI")
     dict_answer = menu.user_input()
-
-    
     
     ################################################################################################################################
     ###                                                                                                                         ####
@@ -36,19 +55,19 @@ def predictor():
     # Conversion de diccionario a dataframe
     df = parse_object_dataframe(dict_answer)
 
-
     # Aplicar transformador a columnas del dataframe y predecir variable target (Riesgo de ictus)
     y = predict_ictus(apply_transformer(df))
     
-    # TODO : MEJORAR FORMATO DE LA SALIDA DE LA PREDCCION POR CONSOLA
+    
     # Formatear salida del modelo(prediccion) por consola
     if int(y) == 1:
         ictus = "Tienes riesgo de padecer ictus"
     elif int(y) ==0:
         ictus = "No tienes riesgo de padecer ictus"
-    ## TODO : MOSTRAR RESPUESTAS DEL USUARIO Y USAR METODO SLEEP DE TIME O PROCESO ASYNCRONO
-    print(ictus)
-     
+    
+
+    show_result('Resultado:',ictus,dict_answer)
+
     # Preguntas adicionales (Voluntario)
     dict_answer_additonal =menu.additional_questions()
 
@@ -67,8 +86,7 @@ def predictor():
     # Guardar Dataframe (preguntas adicionales + basicas +prediccion), actualizando dataset existente
     if dict_answer_additonal != None:
         # Unir dos diccionarios (Respuestas basicas + adicionales)
-        dict_answer.update(dict_answer_additonal)
-        df_additional = parse_object_dataframe(dict_answer)
+        df_additional = parse_object_dataframe(dict_answer_additonal)
         df_additional["ictus"] = y
         crudDF.update(df_additional,PATH_SECONDARY)
     

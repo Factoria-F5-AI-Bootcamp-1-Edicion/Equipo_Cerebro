@@ -134,14 +134,14 @@ class Enter_data():
     'Are you on birth control?',
     ]
   
-        questions = [
+        questions  = [
             {
             'type': 'list',
             'name': 'ictus',
             'message': compl[0],
             'choices': ["Yes","No","No answer"],
         },
-        
+
         {
             'type': 'list',
             'name': 'face_sensibility_loss',
@@ -176,7 +176,7 @@ class Enter_data():
             'type': 'list',
             'name': 'sudden_vision_loss',
             'message': compl[6],
-            'choices': ["success","failed","No answer"],
+            'choices': ["Yes","No","No answer"],
         },
          {
             'type': 'list',
