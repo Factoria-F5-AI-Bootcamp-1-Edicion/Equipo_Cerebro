@@ -118,6 +118,7 @@ class Enter_data():
 
     def additional_questions(self):
         compl=[
+    'Have you suffered an ictus?',
     'Have you suffered loss of sensibility in one of the two sides of your face?',
     'When you smile the left or right side of your mouth does not move?',
     'Have you felt tingling in your face?',
@@ -134,64 +135,71 @@ class Enter_data():
     ]
   
         questions = [
-        {
+            {
             'type': 'list',
-            'name': 'face_sensibility_loss',
+            'name': 'ictus',
             'message': compl[0],
             'choices': ["Yes","No","No answer"],
         },
+        
         {
             'type': 'list',
-            'name': 'immobilized_part_face',
+            'name': 'face_sensibility_loss',
             'message': compl[1],
             'choices': ["Yes","No","No answer"],
         },
         {
             'type': 'list',
-            'name': 'tingling_face',
+            'name': 'immobilized_part_face',
             'message': compl[2],
             'choices': ["Yes","No","No answer"],
         },
         {
             'type': 'list',
-            'name': 'speech_difficulty',
+            'name': 'tingling_face',
             'message': compl[3],
             'choices': ["Yes","No","No answer"],
         },
         {
             'type': 'list',
-            'name': 'personal_stroke_test',
+            'name': 'speech_difficulty',
             'message': compl[4],
+            'choices': ["Yes","No","No answer"],
+        },
+        {
+            'type': 'list',
+            'name': 'personal_stroke_test',
+            'message': compl[5],
             'choices': ["success","failed","No answer"],
         },
         {
             'type': 'list',
             'name': 'sudden_vision_loss',
-            'message': compl[5],
+            'message': compl[6],
             'choices': ["success","failed","No answer"],
         },
          {
             'type': 'list',
             'name': 'vision_loss',
-            'message': compl[6],
-            'choices': ["Yes","No","No answer"],
-        },
-          {
-            'type': 'list',
-            'name': 'migraines',
             'message': compl[7],
             'choices': ["Yes","No","No answer"],
         },
           {
             'type': 'list',
-            'name': 'family_history_stroke',
+            'name': 'migraines',
             'message': compl[8],
+            'choices': ["Yes","No","No answer"],
+        },
+          {
+            'type': 'list',
+            'name': 'family_history_stroke',
+            'message': compl[9],
             'choices': ["Father","Mother","No history","No answer"],
         },
         {
             'type': 'list',
             'name': 'sudden_memory_loss',
-            'message': compl[9],
+            'message': compl[10],
             'choices': ["Yes","No","No answer"],
         },
         ]
