@@ -15,6 +15,10 @@ STREAMLIT ='Go to Dashboard'
 DATA ='View data'
 EXIT='Exit'
 
+INTRODUCTION ="""Let us introduce you our model SP.22, based on data analysis and research of stroke,  which will allow us to anticipate
+                its appearance,distinguish with certainty its causes,establish an early diagnosis and improve the treatment of patients.
+                From this knowledge base, SP.22 will develop a set of decision support tools for clinical level, to be used by healthcare
+                professionals, and at the same time collects new data for future research."""
 # TODO : HACER DESCRIPCION DE LA APP
 class MenuDisplay:
 
@@ -41,7 +45,7 @@ class MenuDisplay:
         textpad.rectangle(stdscr, box[0][0], box[0][1], box[1][0], box[1][1])
         # specify the current selected row
         current_row = 0
-
+        
         # print the menu
         self.print_menu(current_row)
         stdscr.getch()
@@ -72,6 +76,7 @@ class MenuDisplay:
 
     def print_menu(self, selected_row_idx):
         self.stdscr.clear()
+        self.stdscr.addstr(4,5,INTRODUCTION, curses.color_pair(1))
         for idx, row in enumerate(self.menu):
             x = self.screen_width // 2 - len(row) // 2
             y = self.screen_height // 2 - len(menu) // 2 + idx

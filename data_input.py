@@ -118,19 +118,19 @@ class Enter_data():
 
     def additional_questions(self):
         compl=[
-    'Has sufrido perdida de sensibilidad en uno de los dos lados de la cara?',
-    'Cuando sonries la parte izquierda o derecha de la boca no se mueve?',
-    'Has sentido hormigueo en el rostro?',
-    'Te cuesta articular palabras?',
-    'Levanta los brazos al frente. Te ha quedado uno mas bajo que el otro o uno de los brazos cae desplomado?'
-    'Has tenido perdida de vision repentina?',
-    'Pierdes la vision de uno o de los dos ojos durante momentos?',
-    'Sufres de migrañas?',
-    'Dificultad para caminar o desequilibrio?',
-    'Tienes antecedentes familiares (Padre/Madre) de ictus?',
-    'perdida repentina de memoria?',
-    'Ha empezado con la menopausia?',
-    'Tomas anticonceptivos?',
+    'Have you suffered loss of sensibility in one of the two sides of your face?',
+    'When you smile the left or right side of your mouth does not move?',
+    'Have you felt tingling in your face?',
+    'Do you find difficult to articulate words?',
+    'Raise your arms in front of you. Has one of your arms been lower than the other or one of your arms falls down?'
+    'Have you had a sudden loss of vision?',
+    'Do you lose vision in one or both eyes for moments?',
+    'Do you suffer from migraines?',
+    'Do you have difficult walking or have imbalance?',
+    'Do you have a family history of stroke(Father/Mother)?',
+    'Have you suffer sudden memory loss?',
+    'Have you started with menopause?',
+    'Are you on birth control?',
     ]
   
         questions = [

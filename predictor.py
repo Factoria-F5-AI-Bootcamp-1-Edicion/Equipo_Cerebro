@@ -49,14 +49,13 @@ def predictor():
         ictus = "No tienes riesgo de padecer ictus"
     ## TODO : MOSTRAR RESPUESTAS DEL USUARIO Y USAR METODO SLEEP DE TIME O PROCESO ASYNCRONO
     print(ictus)
-    
-    # TODO : TRADUCCION A INGLES DE PREGUNTAS VOLUNTARIAS
+     
     # Preguntas adicionales (Voluntario)
     dict_answer_additonal =menu.additional_questions()
 
     # Agrego prediccion a dataframe a guardar
     df["ictus"] = y
-     
+
      # TODO: PROBAR CORRECTO GUARDADO (AGREGAR CONCATENACION EN METODO UPDATE DE CLASE CRUDDATAFRAME)
     ################################################################################################################
     ####        PERSISTENCIA DE INFORMACION DE USUARIO  --> 2 archivos como medio de persistencia:          ########

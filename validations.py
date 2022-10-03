@@ -1,7 +1,7 @@
 from PyInquirer import Validator, ValidationError
 
 AGE_LIMIT =[0,99]
-GLUCOSE_LIMIT =[0,300]
+GLUCOSE_LIMIT =[0.0,300.0]
 BMI_LIMIT =[0,100]
 BMI_LIMIT =[0,100]
 WEIGHT_LIMIT=[0.0,400.0]
@@ -56,8 +56,8 @@ class GlucoseValidation(Validator):
      def validate(self, document):
         validator = invalid_inputs()
         try:
-            value = int(document.text)
-            if validator.is_numeric_invalid(value,GLUCOSE_LIMIT[0],GLUCOSE_LIMIT[1]) :
+            value = float(document.text)
+            if validator.is_numeric_invalid_float(value,GLUCOSE_LIMIT[0],GLUCOSE_LIMIT[1]) :
                 messager = validator.verify_message("avg_glucose_level")
                 raise ValidationError(
                 message=messager,

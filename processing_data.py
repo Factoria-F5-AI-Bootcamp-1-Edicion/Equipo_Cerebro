@@ -40,7 +40,7 @@ def procesing_dict(dictionary):
     for  i in float_columns:
         dictionary[i] = float(dictionary[i])
     # Calculo de BMI en funcion de peso y altura
-    dictionary["bmi"]= dictionary["weight"] / (dictionary["height"]*dictionary["height"])
+    dictionary["bmi"]= (dictionary["weight"] / (dictionary["height"]*dictionary["height"]))*100
     dictionary.pop("weight")
     dictionary.pop("height")
 
